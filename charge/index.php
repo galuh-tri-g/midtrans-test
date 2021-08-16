@@ -15,10 +15,10 @@ $api_url = $is_production ?
   echo "wrong path, make sure it's `/charge`"; exit();
 }*/
 // Check if method is not HTTP POST, display 404
-if( $_SERVER['REQUEST_METHOD'] !== 'POST'){
+/*if( $_SERVER['REQUEST_METHOD'] !== 'POST'){
   http_response_code(404);
   echo "Page not found or wrong HTTP request method is used"; exit();
-}
+}*/
 
 // get the HTTP POST body of the request
 $request_body = file_get_contents('php://input');
