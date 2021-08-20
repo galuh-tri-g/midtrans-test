@@ -24,7 +24,7 @@ if( $_SERVER['REQUEST_METHOD'] !== 'POST'){
 $request_body = file_get_contents('php://input');
 
 error_log("request : ".$_SERVER['REQUEST_URI']);
-error_log(var_dump($request_body));
+error_log(print_r($request_body, true ));
 
 // set response's content type as JSON
 header('Content-Type: application/json');
