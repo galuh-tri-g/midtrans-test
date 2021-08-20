@@ -8,6 +8,7 @@ $api_url = $is_production ?
   'https://app.midtrans.com/snap/v1/transactions' : 
   'https://app.sandbox.midtrans.com/snap/v1/transactions';
 
+error_log("request : ".$_SERVER['REQUEST_URI']);
 
 // Check if request doesn't contains `/charge` in the url/path, display 404
 if( !strpos($_SERVER['REQUEST_URI'], '/charge') ) {
@@ -23,13 +24,13 @@ if( $_SERVER['REQUEST_METHOD'] !== 'POST'){
 // get the HTTP POST body of the request
 $request_body = file_get_contents('php://input');
 
-error_log("request : ".$_SERVER['REQUEST_URI']);
 error_log(print_r($request_body, true ));
 
 // set response's content type as JSON
 header('Content-Type: application/json');
 // call charge API using request body passed by mobile SDK
 $charge_result = chargeAPI($api_url, $server_key, $request_body);
+error_log(print_r($charge_result, true ));
 // set the response http status code
 http_response_code($charge_result['http_code']);
 // then print out the response body
